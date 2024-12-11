@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+html {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom, #1a1a1a, #121212);
+    color: #e0e0e0;
+    margin: 0;
+    height: 100%;
+}
+body {
+    user-select: none;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+header {
+    text-align: center;
+    margin-top: 10vh;
+    padding: 0 10px;
+    animation: slideDown 1s ease-in-out;
+}
+h1 {
+    cursor: default;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #e0e0e0;
+    margin-bottom: 20px;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+    width: 100%;
+}
+form input, form button {
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: box-shadow 0.3s ease-in-out;
+}
+#urlinput {
+    user-select: text;
+    background: #2a2a2a;
+    color: #fff;
+    text-align: center;
+}
+#urlinput::placeholder {
+    color: #ccc;
+}
+#urlinput:focus {
+    border: 1px solid #444;
+    outline: none;
+    box-shadow: 0 0 10px #4caf50;
+}
+form button {
+    background: #333;
+    color: #e0e0e0;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s, box-shadow 0.3s ease-in-out;
+}
+form button:hover {
+    background: #444;
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px #4caf50;
+}
+input[type="range"] {
+    margin: 10px auto 0;
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    background: transparent;
+    -webkit-appearance: none;
+    appearance: none;
+    transition: box-shadow 0.3s ease-in-out;
+}
+input[type="range"]:focus {
+    outline: none;
+    box-shadow: 0 0 10px #4caf50;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+    height: 8px;
+    background: #333;
+    border-radius: 10px;
+}
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #e0e0e0;
+    cursor: grab;
+    transition: transform 0.2s, box-shadow 0.3s ease-in-out;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 5px #4caf50;
+}
+input[type="range"]::-moz-range-track {
+    height: 8px;
+    background: #333;
+    border-radius: 10px;
+}
+input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #e0e0e0;
+    cursor: grab;
+    transition: transform 0.2s, box-shadow 0.3s ease-in-out;
+}
+input[type="range"]:active::-webkit-slider-thumb {
+    cursor: grabbing;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+    box-shadow: 0 0 0 1000px #2a2a2a inset;
+    -webkit-text-fill-color: #e0e0e0;
+    border: 1px solid #444;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+::-webkit-calendar-picker-indicator {
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+}
+
+details {
+    margin-top: 20px;
+    width: 100%;
+    padding: 0 10px;
+    animation: fadeIn 2s ease-in-out;
+}
+summary {
+    cursor: pointer;
+    padding: 10px;
+    background: #2a2a2a;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: transform 0.2s;
+}
+
+summary:hover {
+    transform: translateY(-2px);
+}
+
+#shortcuts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+    padding: 0 10px;
+    width: 100%;
+}
+#shortcuts img {
+    width: 70px;
+    height: 70px;
+    aspect-ratio: 1 / 1;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+#shortcuts img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px #444;
+}
+
+footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #888;
+    padding: 0 10px;
+    animation: fadeIn 2s ease-in-out;
+}
+footer p {
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.2s;
+}
+footer p:hover {
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
