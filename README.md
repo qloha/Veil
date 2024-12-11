@@ -1,7 +1,7 @@
 
 ## What Is This?
 
-This is a *[web proxy](#definitions)* to lift the veil.
+This is a *[proxy](#definitions)* to lift the veil.
     
 ---  
 
