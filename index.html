@@ -12,10 +12,10 @@
     <header>
         <h1>Veil</h1>
         <form id="goto" onsubmit='opens(event, document.getElementById("urlinput").value)'>
-            <input id="urlinput" type="text" placeholder="Enter URL">
+            <label for="urlinput"></label><input id="urlinput" type="text" placeholder="Enter URL">
             <button type="submit">Go</button>
         </form>
-        <input type="range" min="350" max="100000" id="characterslider" value="350">
+        <label for="characterslider"></label><input type="range" min="350" max="100000" id="characterslider" value="350">
     </header>
 
     <details>

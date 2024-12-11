@@ -5,7 +5,7 @@ function opens(event, url) {
     if (nurl.includes("https://")) {
         nurl = url.replace('https://','')
     }
-    nurl ="http://" + "%40".repeat(characters)  + "@" + nurl;
+    nurl = "http://" + "%40".repeat(characters)  + "@" + nurl;
     window.open(nurl, null, '_blank');
 }
 
