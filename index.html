@@ -34,7 +34,7 @@
         padding: 0 10px;
         animation: slideDown 1s ease-in-out;
     }
-    h1 {
+    h1, h2, h3, h4, h5, h6 {
         cursor: default;
         font-size: 2.5rem;
         font-weight: 600;
@@ -107,6 +107,7 @@
     input[type="range"]::-webkit-slider-thumb {
         -webkit-appearance: none;
         appearance: none;
+        transform: translatey(-30%);
         width: 20px;
         height: 20px;
         border-radius: 50%;
@@ -115,7 +116,7 @@
         transition: transform 0.2s, box-shadow 0.3s ease-in-out;
     }
     input[type="range"]::-webkit-slider-thumb:hover {
-        transform: scale(1.2);
+        transform: scale(1.2) translatey(-30%);
         box-shadow: 0 0 5px #4caf50;
     }
     input[type="range"]::-moz-range-track {
@@ -195,7 +196,7 @@
         margin-top: 20px;
         text-align: center;
         font-size: 0.9rem;
-        color: #888;
+        color: #999;
         padding: 0 10px;
         animation: fadeIn 2s ease-in-out;
     }
@@ -206,6 +207,24 @@
     footer p:hover {
         color: #fff;
         transform: translateY(-2px);
+    }
+
+    .option-selector {
+        margin: 10px;
+        padding: 5px;
+    }
+
+    .option-button {
+        background-color: #333;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .option-button:hover {
+        background-color: #444;
     }
 
     @keyframes fadeIn {
@@ -230,15 +249,43 @@
 </style>
 
 <script>
-    function opens(event, url) {
+    let currentOptionIndex = 0;
+    const options = ["New Tab", "New Window", "Replace Current"];
+
+    function nextOption() {
+        currentOptionIndex = (currentOptionIndex + 1) % options.length;
+        document.getElementById("current-option").textContent = options[currentOptionIndex];
+    }
+
+    function previousOption() {
+        currentOptionIndex = (currentOptionIndex - 1 + options.length) % options.length;
+        document.getElementById("current-option").textContent = options[currentOptionIndex];
+    }
+
+    function opens(event) {
         event.preventDefault();
         let characters = document.getElementById('characterslider').value;
-        let nurl = url;
+        let nurl = document.getElementById('urlinput').value;
         if (nurl.includes("https://")) {
-            nurl = url.replace('https://','')
+            nurl = nurl.replace('https://','')
         }
         nurl = "http://" + "%40".repeat(characters)  + "@" + nurl;
-        window.open(nurl, null, '_blank');
+
+        let target = options[currentOptionIndex];
+
+        switch (target) {
+            case 'New Tab':
+                window.open(nurl, '_blank');
+                break;
+            case 'New Window':
+                window.open(nurl, null, '_blank');
+                break;
+            case 'Replace Current':
+                window.location.href = nurl;
+                break;
+            default:
+                console.error('Invalid target option');
+        }
     }
 
     function aboutblank() {
@@ -264,6 +311,11 @@
             <label for="urlinput"></label><input id="urlinput" type="text" placeholder="Enter URL">
             <button type="submit">Go</button>
         </form>
+        <div class="option-selector">
+            <button class="option-button" onclick="previousOption()">&#60;</button>
+            <span id="current-option">New Tab</span>
+            <button class="option-button" onclick="nextOption()">&#62;</button>
+        </div>
         <label for="characterslider"></label><input type="range" min="350" max="100000" id="characterslider" value="350">
     </header>
 
