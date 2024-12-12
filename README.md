@@ -14,7 +14,7 @@ This is a *[proxy](#definitions)* to lift the veil.
 ---   
 ### Examples
 
-![alt text](/example.png "Example")
+![alt text](/assets/img/example.png "Example")
 
 ### Definitions
 
