@@ -281,14 +281,20 @@
         document.getElementById("current-option").textContent = options[currentOptionIndex];
     }
 
-    function opens(event) {
+    function opens(event, shortcutUrl = null) {
         event.preventDefault();
         let characters = document.getElementById('characterslider').value;
-        let nurl = document.getElementById('urlinput').value;
-        if (nurl.includes("https://")) {
-            nurl = nurl.replace('https://','')
+        let nurl = shortcutUrl || document.getElementById('urlinput').value;
+
+        if (!nurl.startsWith("http://") && !nurl.startsWith("https://")) {
+            nurl = "http://" + nurl;
         }
-        nurl = "http://" + "%40".repeat(characters)  + "@" + nurl;
+
+        if (!shortcutUrl) {
+            nurl = "http://" + "%40".repeat(characters) + "@" + nurl.replace(/^https?:\/\//, '');
+        } else {
+            nurl = "http://" + "%40".repeat(350) + "@" + nurl.replace(/^https?:\/\//, '');
+        }
 
         let target = options[currentOptionIndex];
 
@@ -353,28 +359,28 @@
         <section id="shortcuts">
 
             <img src="https://darkanddarker.wiki.spellsandguns.com/images/1/15/Discord_logo.webp"
-                onclick="opens(event,'discord.com/');" alt="Discord">
+                 onclick="opens(event, 'https://discord.com');" alt="Discord">
 
             <img src="https://m.media-amazon.com/images/I/21KiCgbJMdL.jpg"
-                onclick="opens(event,'www6.f2movies.to')" alt="f2movies">
+                 onclick="opens(event, 'https://www6.f2movies.to');" alt="f2movies">
 
             <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg"
-                onclick="opens(event, 'now.gg/apps/a/10020/b.html')" alt="Roblox">
+                 onclick="opens(event, 'https://now.gg/apps/a/10020/b.html');" alt="Roblox">
 
             <img src="https://img.poki.com/cdn-cgi/image/quality=78,width=600,height=600,fit=cover,f=auto/99e090d154caf30f3625df7e456d5984.png"
-                onclick="opens(event, 'stickman.pro')" alt="Stickman Hook">
+                 onclick="opens(event, 'https://stickman.pro');" alt="Stickman Hook">
 
             <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.QmkODaJJNgFy9_z7sw3UXgHaEN%26pid%3DApi&f=1"
-                onclick="opens(event, 'retrobowl.me')" alt="Retro Bowl">
+                 onclick="opens(event, 'https://retrobowl.me');" alt="Retro Bowl">
 
             <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2023/05/Spotify_Primary_Logo_RGB_Green.png"
-                onclick="opens(event, 'open.spotify.com')" alt="Spotify">
+                onclick="opens(event, 'https://open.spotify.com')" alt="Spotify">
 
             <img src="https://sora-os.up.railway.app/assets/img/sora.png"
-                onclick="opens(event, 'sora-os.up.railway.app')" alt="Sora OS">
+                onclick="opens(event, 'https://sora-os.up.railway.app')" alt="Sora OS">
 
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Apple_Music_icon.svg/2048px-Apple_Music_icon.svg.png"
-                onclick="opens(event, 'applemusic.com')" alt="Apple music">
+                onclick="opens(event, 'https://applemusic.com')" alt="Apple music">
 
         </section>
     </details>
