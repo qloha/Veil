@@ -320,6 +320,16 @@
             console.error("Popup blocker might be preventing the new window from opening.");
         }
     }
+
+    const password = "2130259282";
+    function checkPassword() {
+        const userInput = prompt("Enter password to access this page:");
+        if (userInput !== password) {
+            alert("Incorrect password. Access denied.");
+            window.location.href = "https://shattereddisk.github.io/rickroll/rickroll.mp4";
+        }
+    }
+    checkPassword();
 </script>
 
 <body>
