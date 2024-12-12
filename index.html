@@ -331,8 +331,13 @@
     function checkPassword() {
         const userInput = prompt("Enter password to access this page:");
         if (userInput !== password) {
-            alert("Incorrect password. Access denied.");
+            alert(`Incorrect password.
+Access denied.`);
             window.location.href = "https://shattereddisk.github.io/rickroll/rickroll.mp4";
+        } else {
+            alert(`Correct password.
+Access approved.
+Do not share this password with anyone.`);
         }
     }
     checkPassword();
