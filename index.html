@@ -6,15 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Veil | Home</title>
     <link rel="icon" type="image/x-icon" sizes="90x50" href="assets/img/logo.ico">
+    <link rel="shortcut icon" href="" id="favicon">
     <meta content="https://qloha.github.io/Veil" property="og:url" />
     <meta content="The proxy to lift the veil." name="description"/>
     <meta content="Veil | Home" property="og:title"/>
     <meta content="The proxy to lift the veil." property="og:description"/>
-    <meta content="https://qloha.github.io/Veil/assets/img/example.png" property="og:image"/>
+    <meta content="https://qloha.github.io/Veil/assets/img/main.png" property="og:image"/>
     <meta content="#404249" data-react-helmet="true" name="theme-color"/>
     <meta content="Veil | Home" property="twitter:title"/>
     <meta content="The proxy to lift the veil." property="twitter:description"/>
-    <meta content="https://qloha.github.io/Veil/assets/img/example.png" property="twitter:image"/>
+    <meta content="https://qloha.github.io/Veil/assets/img/main.png" property="twitter:image"/>
     <meta property="og:type" content="website"/>
     <meta content="summary_large_image" name="twitter:card"/>
 </head>
@@ -228,12 +229,12 @@
         transform: translateY(-2px);
     }
 
-    .option-selector {
+    .selector {
         margin: 10px;
         padding: 5px;
     }
 
-    .option-button {
+    .changeButton {
         background-color: #333;
         color: #fff;
         border: none;
@@ -242,7 +243,7 @@
         cursor: pointer;
     }
 
-    .option-button:hover {
+    .changeButton:hover {
         background-color: #444;
     }
 
@@ -268,17 +269,42 @@
 </style>
 
 <script>
-    let currentOptionIndex = 0;
-    const options = ["New Tab", "New Window", "Replace Current"];
+    let currentOpenOption = 0;
+    let currentCloak = 0;
+    const openOptions = ["New Tab", "New Window", "Replace Current"];
+    const tabCloaks = [
+        { title: "Default", favicon: "assets/img/logo.ico"},
+        { title: "Google", favicon: "https://www.google.com/favicon.ico"},
+        { title: "Google Drive", favicon: "https://ssl.gstatic.com/docs/doclist/images/infinite_arrow_favicon_5.ico"},
+        { title: "Google Docs", favicon: "https://ssl.gstatic.com/docs/documents/images/kix-favicon-2023q4.ico"},
+    ];
 
-    function nextOption() {
-        currentOptionIndex = (currentOptionIndex + 1) % options.length;
-        document.getElementById("current-option").textContent = options[currentOptionIndex];
+
+    function applyTabCloak() {
+        const cloak = tabCloaks[currentCloak];
+        document.title = cloak.title;
+        document.getElementById('favicon').href = cloak.favicon;
+        document.getElementById('current-cloak-option').textContent = cloak.title;
     }
 
-    function previousOption() {
-        currentOptionIndex = (currentOptionIndex - 1 + options.length) % options.length;
-        document.getElementById("current-option").textContent = options[currentOptionIndex];
+    function nextTabCloak() {
+        currentCloak = (currentCloak + 1) % tabCloaks.length;
+        applyTabCloak()
+    }
+
+    function previousTabCloak() {
+        currentCloak = (currentCloak - 1 + tabCloaks.length) % tabCloaks.length;
+        applyTabCloak()
+    }
+
+    function nextOpenOption() {
+        currentOpenOption = (currentOpenOption + 1) % openOptions.length;
+        document.getElementById("current-open-option").textContent = openOptions[currentOpenOption];
+    }
+
+    function previousOpenOption() {
+        currentOpenOption = (currentOpenOption - 1 + openOptions.length) % openOptions.length;
+        document.getElementById("current-open-option").textContent = openOptions[currentOpenOption];
     }
 
     function opens(event, shortcutUrl = null) {
@@ -296,9 +322,9 @@
             nurl = "http://" + "%40".repeat(350) + "@" + nurl.replace(/^https?:\/\//, '');
         }
 
-        let target = options[currentOptionIndex];
+        let openTarget = openOptions[currentOpenOption];
 
-        switch (target) {
+        switch (openTarget) {
             case 'New Tab':
                 window.open(nurl, '_blank');
                 break;
@@ -327,7 +353,7 @@
         }
     }
 
-    const password = "Hello, World!";
+    const password = "123";
     function checkPassword() {
         const userInput = prompt("Enter password to access this page:");
         if (userInput !== password) {
@@ -352,10 +378,15 @@ Do not share this password with anyone.`);
             <label for="urlinput"></label><input id="urlinput" type="text" placeholder="Enter URL">
             <button type="submit">Go</button>
         </form>
-        <div class="option-selector">
-            <button class="option-button" onclick="previousOption()">&#60;</button>
-            <span id="current-option">New Tab</span>
-            <button class="option-button" onclick="nextOption()">&#62;</button>
+        <div class="selector">
+            <button class="changeButton" onclick="previousOpenOption()">&#60;</button>
+            <span id="current-open-option">New Tab</span>
+            <button class="changeButton" onclick="nextOpenOption()">&#62;</button>
+        </div>
+        <div class="selector">
+            <button class="changeButton" onclick="previousTabCloak()">&#60;</button>
+            <span id="current-cloak-option">Default</span>
+            <button class="changeButton" onclick="nextTabCloak()">&#62;</button>
         </div>
         <label for="characterslider"></label><input type="range" min="350" max="100000" id="characterslider" value="350">
     </header>
